@@ -38,7 +38,7 @@ ul {
   max-height: 250px;
   overflow-y: auto;
 }
-main {
+/*main {
   background-color: #4c6085;
   width: 70%;
   padding: 30px;
@@ -46,7 +46,7 @@ main {
   margin: 50px auto;
   display: flex;
   justify-content: space-around;
-}
+}*/
 input {
   width: 90%;
   padding: 10px;

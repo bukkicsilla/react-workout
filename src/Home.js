@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Groups from "./Groups";
 import "./App.css";
+import "./Home.css";
 import axios from "axios";
 const BASE_URL = "http://localhost:5001/api/fitness";
 
-const Home = ({ exercises, setExercises }) => {
+const Home = () => {
+  const [exercises, setExercises] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  useEffect(() => {
+    async function getAllExercises() {
+      try {
+        const res = await axios.get(`${BASE_URL}/allexercises`);
+        setExercises(res.data);
+        //console.log("Exercises", res.data);
+      } catch (e) {
+        console.log("Error", e);
+      }
+    }
+    getAllExercises();
+  }, []);
   async function getExercisesByMuscle(event) {
     event.preventDefault();
     try {
@@ -56,7 +70,7 @@ const Home = ({ exercises, setExercises }) => {
         </form>
         <ul id="exercise-list" className="pencilsnow">
           {exercises.map((exercise) => (
-            <li key={exercise.id}>
+            <li key={exercise.name}>
               <a href="https://api-ninjas.com/api/exercises">{exercise.name}</a>
             </li>
           ))}

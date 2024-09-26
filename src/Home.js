@@ -3,32 +3,26 @@ import Groups from "./Groups";
 import "./App.css";
 import "./Home.css";
 import axios from "axios";
+import FindExercisesForm from "./FindExercisesForm";
 const BASE_URL = "http://localhost:5001/api/fitness";
 
 const Home = () => {
   const [exercises, setExercises] = useState([]);
-  const [inputValue, setInputValue] = useState("");
   useEffect(() => {
     async function getAllExercises() {
       try {
         const res = await axios.get(`${BASE_URL}/allexercises`);
         setExercises(res.data);
-        //console.log("Exercises", res.data);
       } catch (e) {
         console.log("Error", e);
       }
     }
     getAllExercises();
   }, []);
-  async function getExercisesByMuscle(event) {
-    event.preventDefault();
-    try {
-      const res = await axios.get(`${BASE_URL}/exercises/${inputValue}`);
-      setExercises(res.data);
-    } catch (e) {
-      console.log("Error", e);
-    }
-  }
+
+  const findExercisesByMuscle = (data) => {
+    setExercises(data);
+  };
   return (
     <main>
       <Groups>
@@ -53,21 +47,7 @@ const Home = () => {
         </ul>
       </Groups>
       <section className="search-muscle-group">
-        <form action="">
-          <input
-            type="text"
-            name="muscle"
-            placeholder="Enter muscle group"
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <button
-            className="btn-search"
-            onClick={getExercisesByMuscle}
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
+        <FindExercisesForm findExercisesByMuscle={findExercisesByMuscle} />
         <ul id="exercise-list" className="pencilsnow">
           {exercises.map((exercise) => (
             <li key={exercise.name}>

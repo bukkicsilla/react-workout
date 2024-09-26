@@ -9,31 +9,6 @@ import "./App.css";
 //const BASE_URL = "http://localhost:5001/api/fitness";
 
 function App() {
-  //const [exercises, setExercises] = useState([]);
-  //const [inputValue, setInputValue] = useState("");
-  /*useEffect(() => {
-    async function getAllExercises() {
-      try {
-        const res = await axios.get(`${BASE_URL}/allexercises`);
-        setExercises(res.data);
-        //console.log("Exercises", res.data);
-      } catch (e) {
-        console.log("Error", e);
-      }
-    }
-    getAllExercises();
-  }, []);*/
-
-  /*async function getExercisesByMuscle(event) {
-    event.preventDefault();
-    try {
-      const res = await axios.get(`${BASE_URL}/exercises/${inputValue}`);
-      setExercises(res.data);
-    } catch (e) {
-      console.log("Error", e);
-    }
-  }*/
-
   return (
     <div className="App">
       <BrowserRouter>
